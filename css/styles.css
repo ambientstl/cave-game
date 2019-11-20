@@ -1,0 +1,21 @@
+.center-column {
+  text-align: center;
+}
+
+div {
+  border: solid 1px;
+}
+
+.move-controls button {
+  display: block;
+}
+
+.map-btn,
+.equip-btn {
+  visibility: hidden;
+}
+
+.text-area {
+  position: absolute;
+  bottom: 0;
+}
