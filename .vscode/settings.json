@@ -1,0 +1,27 @@
+{
+  "better-comments.highlightPlainText": true,
+  "css.validate": false,
+  "editor.accessibilitySupport": "off",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.fontFamily": "'Inconsolata', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": false,
+  "editor.scrollBeyondLastColumn": 2,
+  "editor.smoothScrolling": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 100,
+  "eslint.autoFixOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "stylelint.enable": true,
+  "terminal.integrated.fontFamily": "'Inconsolata', monospace",
+  "workbench.colorTheme": "Night Owl (No Italics)",
+  "workbench.enableExperiments": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.view.alwaysShowHeaderActions": true
+}
