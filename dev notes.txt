@@ -1,0 +1,55 @@
+some-logic.js <text game>
+ - 1st attempt at text game logic, failed attempt at looping
+ - some previous code missing/deleted
+
+bats.js <text game>
+ - example map object
+ - example player object
+ - example basic item handling
+ - example enemy object
+ - test battle functionality with death check
+
+movement.js <text/browser game>
+ - added position to player object
+ - added dimensions, doors to map object
+  - connected map objects
+ - move forward
+  - within map, to next map, dead end
+ - move back
+  - within map, to previous map, dead end
+ - test movement and map connections
+ - test currentMap global variable
+
+items.js <text/browser game>
+ - added 'equip' object with weapon and armor keys to player object
+ - check current player position for item
+ - check item for type (weapon, armor, etc)
+ - example item object
+ - example weapons, armor lists
+ - added item property to map object
+ - test taking item
+
+index.html <browser/text game>
+ - bootstrapped grid for game layout
+ - add buttons for interaction
+
+styles.css
+ - hide map and equip buttons
+ - move text area to bottom
+
+eventHandling.js <browser/text game>
+ - linked to index.js
+ - function constructor for map
+ - simplified map object's dimensions to length
+ - attempt at checking player position and checking for next map
+ - attempt at generic move function <text>
+ - added current map to player object, simplified position to single number
+ - attempt 'master' map object with start, caves, hidden, and current map(s)
+ - check for boundary/dead end
+ - get current/next map and player position
+ - move player forward/back, set current map and position
+ - pseudo-code: check for enemy attack
+ - attempt 'master' item object with item locations
+ - pseudo-code: check for item
+ - pseudo-code: update html button row
+ - event listeners for forward and back buttons, button row
