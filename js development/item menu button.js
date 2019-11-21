@@ -24,7 +24,7 @@ function checkPotionCounts(player) {
 function drawItemMenu(player) {
   // set potion array
   let potionCountArray = checkPotionCounts(player);
-  // set 'page' name to items
+  // set 'map' name to items
   document.querySelector(".map-name").innerHTML = "ITEMS";
   // get main screen
   let screen = document.querySelector(".main-screen");
@@ -56,17 +56,26 @@ function drawItemMenu(player) {
   }
 }
 
-function toggleItemMenu(player1) {
+function resetMainScreen() {
+  // reset map name
+  document.querySelector(".map-name").innerHTML = `${thisCurrentMap.name}`;
+  // get main screen
+  let screen = document.querySelector(".main-screen");
+  screen.innerHTML = "MAIN SCREEN";
+}
+
+function toggleItemMenu(player) {
   // get main screen
   let screen = document.querySelector(".main-screen");
   // toggle item-menu class and update main screen
   // if item-menu toggled on,
   if (screen.classList.toggle("item-menu")) {
     // draw item menu
-    drawItemMenu(player1);
+    drawItemMenu(player);
   } else {
     // reset main screen
-    // create separate item-menu div & vary z-index to show and hide??
+    resetMainScreen();
+    // OR create separate item-menu div & vary z-index to show and hide??
   }
 }
 
