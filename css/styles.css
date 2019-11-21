@@ -13,14 +13,21 @@ img {
 
 .move-controls button {
   display: block;
+  width: 100%;
 }
 
-.map-btn,
-.equip-btn {
-  visibility: hidden;
+.map-btn button,
+.equip-btn button{
+  /* visibility: hidden; */
+  width: 100%;
 }
 
 .text-area {
   position: absolute;
   bottom: 0;
+  width: 100%;
+}
+
+.btn-row button {
+  width: 33%;
 }
