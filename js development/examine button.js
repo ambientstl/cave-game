@@ -1,3 +1,5 @@
+document.querySelector(".btn-1").innerHTML = "EXAMINE";
+
 // for 'examine' button in button row (btn-1)
 // takes in current map
 function examineSurroundings(map) {

@@ -33,3 +33,9 @@ img {
 .btn-row button {
   width: 33%;
 }
+
+.item-menu .btn {
+  display: block;
+  width: 75%;
+  margin: auto;
+}
