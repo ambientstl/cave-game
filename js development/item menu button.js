@@ -3,15 +3,46 @@ const player1 = {
     potionCount: 2,
     bigPotionCount: 4
   },
-  HP: 10
+  HP: 10,
+  maxHP: 30,
+  name: "PlayerOne"
 };
 
 const thisCurrentMap = {
   name: "Cave Three: Back Cavern"
 };
 
+// set map name
 document.querySelector(".map-name").innerHTML = thisCurrentMap.name;
+// set items button text
 document.querySelector(".btn-2").innerHTML = "ITEMS";
+
+// set player info
+// get player info area
+const playerInfoArea = document.querySelector(".player-info");
+// clear player info html
+playerInfoArea.innerHTML = "";
+// create player name element and add to player info area
+const playerNameElement = document.createElement("p");
+playerInfoArea.appendChild(playerNameElement);
+// add class to player name
+playerNameElement.className = "player-info-name";
+
+// set player name
+document.querySelector(
+  ".player-info-name"
+).innerHTML = `<strong>${player1.name}</strong>`;
+
+// create player HP element and add to player info area
+const playerHPElement = document.createElement("p");
+playerInfoArea.appendChild(playerHPElement);
+// add class to player HP
+playerHPElement.className = "player-info-HP";
+
+// set player HP
+document.querySelector(
+  ".player-info-HP"
+).innerHTML = `HP: ${player1.HP} / ${player1.maxHP}`;
 
 // checks player's potion count
 // returns array of potion counts
@@ -88,8 +119,14 @@ function addPotionEventListener(potionType) {
         player1.items.potionCount -= 1;
         // apply potion's effects
         player1.HP += potion.heal;
-        // TODO: update player HP in player info area
-        // TODO: check for maximum HP, change HP # in message if < 5
+        // check for maximum HP, reset player HP to maxHP if > maxHP
+        if (player1.HP > player1.maxHP) {
+          player1.HP = player1.maxHP;
+        }
+        // update player HP
+        document.querySelector(
+          ".player-info-HP"
+        ).innerHTML = `HP: ${player1.HP}  / ${player1.maxHP}`;
         // display 'used potion' message in text area
         document.querySelector(".text-area").innerHTML = potion.message;
         // check potion count
@@ -111,8 +148,14 @@ function addPotionEventListener(potionType) {
         player1.items.bigPotionCount -= 1;
         // apply potion's effects
         player1.HP += largePotion.heal;
-        // TODO: update player HP in player info area
-        // TODO: check for maximum HP, change HP # in message if < 15
+        // check for maximum HP, reset player HP to maxHP if > maxHP
+        if (player1.HP > player1.maxHP) {
+          player1.HP = player1.maxHP;
+        }
+        // update player HP
+        document.querySelector(
+          ".player-info-HP"
+        ).innerHTML = `HP: ${player1.HP} / ${player1.maxHP}`;
         // display 'used potion' message in text area
         document.querySelector(".text-area").innerHTML = largePotion.message;
         // check potion count
