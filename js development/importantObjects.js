@@ -6,22 +6,20 @@ class Player {
     this.HP = 10;
     this.maxHP = 30;
     this.currentPosition = 1;
-    // this.currentMap ??
-    // object or string?, string === mapObj.name? or === mapObj.mapID??
-    // currentMap = mapID = "mapObj"
+    // TODO: set currentMap object on game startup (after loading map objects)
     this.currentMap = "threeEntrances";
     this.items = {
-      potion: { potionCount: 2, largePotionCount: 4 },
+      potions: { potionCount: 2, largePotionCount: 4 },
       armor: {
-        helmet: null,
-        amulet: null
+        helmet: false,
+        amulet: false
       },
-      weapon: []
+      weapons: []
     };
   }
 }
 
-const newPlayer = new Player("New Player");
+const player = new Player("New Player");
 
 // TODO: MAP CLASS
 // MAP
@@ -87,6 +85,7 @@ const hiddenPassage1 = new HiddenMap(
   5,
   "Ghost",
   null,
+  // TODO: (future) make start and end = map objects instead of strings
   "witchDen",
   "caveOneFrontCavern"
 );
@@ -98,22 +97,18 @@ const hiddenPassage2 = new HiddenMap(
   8,
   null,
   null,
+  // TODO: (future) make start and end =  map objects instead of strings
   "bearDen",
   "dragonDen"
 );
 
 // MAP OF MAPS
 // adapted from eventHandlers.js
+// ?? rename to 'globalMap' or ?
 const mapMap = {
   start: threeEntrances,
   caves: {
-    1: [
-      caveOneFrontCorridor,
-      caveOneFrontCavern
-      // caveOneCorridorBack,
-      // // Bear Den
-      // caveOneCavernBack
-    ],
+    1: [caveOneFrontCorridor, caveOneFrontCavern],
     2: [caveTwoFrontCorridor]
   },
   hidden: [hiddenPassage1, hiddenPassage2]
@@ -122,108 +117,123 @@ const mapMap = {
 // TODO: ITEM CLASS
 // ITEM
 class Item {
-  constructor(id, name, message, buttonText) {
+  constructor(id, name) {
     this.id = id;
     this.name = name;
-    this.message = message;
-    this.buttonText = buttonText;
   }
 }
 
 // POTION
 class Potion extends Item {
-  constructor(id, name, message, buttonText, heal) {
-    super(id, name, message, buttonText);
+  constructor(id, name, heal) {
+    super(id, name);
     this.type = "Potion";
     this.heal = heal;
+    this.message = `Used ${name}: healed ${heal} HP.`;
+    this.buttonText = `Take ${name}`;
+    this.action = function takePotion() {
+      // add potion to correct potion count
+      player.items.potions[id + "Count"] += 1;
+      // TODO: timeout takePotion function for X seconds OR remove from item map for X seconds then replace?
+    };
   }
 }
 
-const potion = new Potion(
-  "potion",
-  "Potion",
-  "Used Potion: healed 5 HP.",
-  "Take Potion",
-  5
-);
-const largePotion = new Potion(
-  "largePotion",
-  "Large Potion",
-  "Used Large Potion: healed 15 HP.",
-  "Take Large Potion",
-  15
-);
+const potion = new Potion("potion", "Potion", 5);
+const largePotion = new Potion("largePotion", "Large Potion", 15);
 
 // ARMOR
 class Armor extends Item {
-  constructor(id, name, message, buttonText, hpBonus) {
-    super(id, name, message, buttonText);
+  constructor(id, name, hpBonus, removeItem) {
+    super(id, name);
     this.type = "Armor";
     this.hpBonus = hpBonus;
+    this.message = `Equipped ${name}.`;
+    this.buttonText = `Equip ${name}`;
+    this.action = function equipArmor() {
+      // equip armor
+      player.items.armor[id] = true;
+      player.HP += hpBonus;
+    };
+    this.removeItem = removeItem;
   }
 }
 
-const helmet = new Armor(
-  "helmet",
-  "Helmet",
-  "A sturdy metal helmet",
-  "Equip Helmet",
-  5
-);
-const amulet = new Armor(
-  "amulet",
-  "Amulet",
-  "A jeweled amulet.",
-  "Equip Amulet",
-  2
-);
+const helmet = new Armor("helmet", "Helmet", 5, function removeItem() {
+  itemMap.hiddenItemPosition.caveOneFrontCorridor = null;
+});
+const amulet = new Armor("amulet", "Amulet", 2, function removeItem() {
+  itemMap.caveTwoFrontCorridor[4] = null;
+});
 
 // WEAPON
 class Weapon extends Item {
-  constructor(id, name, message, buttonText, damageBonus, itemInteractions) {
-    super(id, name, message, buttonText);
+  constructor(id, name, damageBonus, itemInteractions, removeItem) {
+    super(id, name);
     this.type = "Weapon";
     this.damageBonus = damageBonus;
     this.itemInteractions = itemInteractions;
+    this.message = `Equipped ${name}`;
+    this.buttonText = `Equip ${name}`;
+    this.action = function equipWeapon() {
+      // equip weapon
+      player.items.weapons.push(this);
+    };
+    this.removeItem = removeItem;
   }
 }
 
-const stick = new Weapon(
-  "stick",
-  "Stick",
-  "A wooden stick.",
-  "Equip Stick",
-  1,
+const stick = new Weapon("stick", "Stick", 1, null, function removeItem() {
+  itemMap.threeEntrances[0] = null;
+});
+const wand = new Weapon(
+  "wand",
+  "Wand",
+  5,
+  {
+    item: "amulet",
+    damageBonus: 1.2
+  },
   null
 );
-const wand = new Weapon("wand", "Wand", "A magic wand.", null, 5, {
-  item: "amulet",
-  damageBonus: 1.2
-});
 
 // ACTION ITEMS
 class ActionItem extends Item {
-  constructor(id, name, message, buttonText, effect) {
-    super(id, name, message, buttonText);
+  constructor(id, name, message, buttonText, action, removeItem) {
+    super(id, name);
     this.type = "Action";
-    // object with key of 'heal', 'transform', 'reveal'
-    this.effect = effect;
+    this.message = message;
+    this.buttonText = buttonText;
+    this.action = action;
+    this.removeItem = removeItem;
   }
 }
 
 const fruit = new ActionItem(
   "fruit",
   "Fruit",
-  "+1 HP from eating Fruit.",
+  "Ate Fruit: gained 1 HP.",
   "Eat Fruit",
-  { heal: 1 }
+  function eatFruit() {
+    player.HP += 1;
+  },
+  function removeItem() {
+    // TODO: timeout function for X seconds OR remove from item map for X seconds then replace?
+  }
 );
 const cauldron = new ActionItem(
   "cauldron",
   "Bubbling Cauldron",
-  "A large cauldron with a glowing and bubbly blue liquid.",
+  "Stick transformed into magic Wand.",
   "Dip Stick.",
-  { transform: ["stick", "wand"] }
+  function useCaldron() {
+    let stickIndex = player.items.weapons.indexOf(stick);
+    player.items.weapons[stickIndex] = wand;
+  },
+  function removeItem() {
+    // remove from itemMap OR reset this.action to new function
+    itemMap.caveOneFrontCavern[1] = null;
+  }
 );
 
 // MAP OF ITEMS
