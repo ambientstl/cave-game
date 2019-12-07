@@ -4,7 +4,7 @@
   "description": "[Visit My Blog to Listen to Local Experimental Music from St. Louis](https://ambientstl.com/)",
   "main": "classes.js",
   "scripts": {
-    "serve": "parcel index.html && cp ./images ./dist"
+    "serve": "parcel index.html && cp -R ./images/ ./dist/images/"
   },
   "repository": {
     "type": "git",
