@@ -4,7 +4,7 @@
   "description": "[Visit My Blog to Listen to Local Experimental Music from St. Louis](https://ambientstl.com/)",
   "main": "classes.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "parcel index.html"
   },
   "repository": {
     "type": "git",
