@@ -8,16 +8,17 @@ import {
   MovementButtons,
   ButtonRow
 } from "./components";
+import * as st from "./store";
 
 const player = new Player("New Player");
 
-function render() {
+function render(st) {
   document.querySelector("#root").innerHTML = `
-  ${PlayerInfo()}
-  ${MainScreen()}
+  ${PlayerInfo(st)}
+  ${MainScreen(st)}
   ${Logo()}
   ${MovementButtons()}
-  ${ButtonRow()}
+  ${ButtonRow(st)}
 `;
 }
 
