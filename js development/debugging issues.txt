@@ -1,0 +1,14 @@
+ - multiple eatFruit calls: picking up another call everytime you move past one
+ - when transforming stick into wand, pick up another stick
+ - Eat Fruit message/action appearing in place of stick/cauldron once gone
+    - last message/action it remembers (??)
+    == remove event listener
+      - calling/stacking functions as i pass them going FORWARD
+      / try deleting & rebuilding whole button?
+
+      /refactor class's methods to correct set/get <function>
+
+
+
+ - error handling to only get 1 stick, have stick before cauldron message/action
+
