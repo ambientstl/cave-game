@@ -25,7 +25,7 @@ index.js
 
 questions:
  - where to add event listeners? ask Evan or Manav
-    - main index.js?
+    - main index.js
  - state - keeping track of player info, position, etc.
     - buttons depend on position/map and fighting/moving
  -
