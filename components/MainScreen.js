@@ -1,12 +1,18 @@
-export default () => `
+export default st => `
 <div class="main-screen">
   <div class="map-name">
-      map name
+      ${st.Position.currentMap}
   </div>
-  <div class="main-image">
-      image area
+  <div class="main-screen">
+    <img class= "${st.Image.display}" src= "${st.Image.path}" alt="${
+  st.Image.alt
+}">
+
   </div>
   <div class="main-text">
-      text area
+    ${st.GameText.messages.reduce(
+      (html, curr) => (html += `<p>${curr}</p>`),
+      ``
+    )};
   </div>
 </div>`;
