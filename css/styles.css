@@ -39,3 +39,7 @@ img {
   width: 75%;
   margin: auto;
 }
+
+.hidden-btn {
+  visibility: hidden;
+}

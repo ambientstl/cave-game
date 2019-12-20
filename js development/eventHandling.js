@@ -62,76 +62,73 @@ const caveOneCavernFront = {
 //   }
 // }
 
-
 // attempt at move function
-function movePlayer(direction) {
-  // check direction (forward)
-  if (direction === "forward") {
-    // if player position is at end of map
-    if (player.position === player.map.length) {
-      // check for next map
-      if (player.map.nextMap) {
-        // move to next map
-        console.log(`Moving to next map: ${player.map.nextMap.name}`);
-        // update text area in html with message
-        document.querySelector(
-          ".text-area"
-        ).innerHTML = `Moving to next map: ${player.map.nextMap.name}`;
-        // set current map for player
-        player.map = player.map.nextMap;
-        // reset player position to start of map
-        player.position = 1;
-      } else {
-        // if there is no nextMap
-        console.log("A cave wall prevents you from moving forward.");
-        // update text area in html with message
-        document.querySelector(".text-area").innerHTML =
-          "A cave wall prevents you from moving forward.";
-      }
-    } else {
-      // else (if player within map) increase player position
-      player.position += 1;
-    }
-    //check direction (back)
-  } else if (direction === "back") {
-    // check for previous map
-    console.log(player.map.previousMap);
-    if (player.map.previousMap) {
-      // if player at beginning of map
-      if (player.position === 1) {
-        // move to previous map
-        console.log(`Moving to previous map: ${player.map.previousMap.name}`);
-        // update text area of html with message
-        document.querySelector(
-          ".text-area"
-        ).innerHTML = `Moving to previous map: ${player.map.previousMap.name}`;
-        // update player's current map
-        player.map = player.map.previousMap;
-        // reset player position to end of map
-        player.position = player.map.length;
-      } else {
-        // if there is no previousMap
-        console.log("A dense forest prevents you from moving back.");
-        // update text area in html
-        document.querySelector(".text-area").innerHTML =
-          "A dense forest prevents you from moving back.";
-      }
-    } else {
-      // else (player is within map) decrease player position
-      player.position -= 1;
-    }
-  }
-}
+// function movePlayer(direction) {
+//   // check direction (forward)
+//   if (direction === "forward") {
+//     // if player position is at end of map
+//     if (player.position === player.map.length) {
+//       // check for next map
+//       if (player.map.nextMap) {
+//         // move to next map
+//         console.log(`Moving to next map: ${player.map.nextMap.name}`);
+//         // update text area in html with message
+//         document.querySelector(
+//           ".text-area"
+//         ).innerHTML = `Moving to next map: ${player.map.nextMap.name}`;
+//         // set current map for player
+//         player.map = player.map.nextMap;
+//         // reset player position to start of map
+//         player.position = 1;
+//       } else {
+//         // if there is no nextMap
+//         console.log("A cave wall prevents you from moving forward.");
+//         // update text area in html with message
+//         document.querySelector(".text-area").innerHTML =
+//           "A cave wall prevents you from moving forward.";
+//       }
+//     } else {
+//       // else (if player within map) increase player position
+//       player.position += 1;
+//     }
+//     //check direction (back)
+//   } else if (direction === "back") {
+//     // check for previous map
+//     console.log(player.map.previousMap);
+//     if (player.map.previousMap) {
+//       // if player at beginning of map
+//       if (player.position === 1) {
+//         // move to previous map
+//         console.log(`Moving to previous map: ${player.map.previousMap.name}`);
+//         // update text area of html with message
+//         document.querySelector(
+//           ".text-area"
+//         ).innerHTML = `Moving to previous map: ${player.map.previousMap.name}`;
+//         // update player's current map
+//         player.map = player.map.previousMap;
+//         // reset player position to end of map
+//         player.position = player.map.length;
+//       } else {
+//         // if there is no previousMap
+//         console.log("A dense forest prevents you from moving back.");
+//         // update text area in html
+//         document.querySelector(".text-area").innerHTML =
+//           "A dense forest prevents you from moving back.";
+//       }
+//     } else {
+//       // else (player is within map) decrease player position
+//       player.position -= 1;
+//     }
+//   }
+// }
 
 // player object with current map as property
 // position simplified to single number
 const player = {
   name: "player1",
-  position: 1,
-  map: caveEntrance
+  position: 1
+  // map: caveEntrance
 };
-
-console.log(player);
 
 // attempt at a map object as 'map of maps' for map connections,
 // hidden maps, and current map
@@ -283,12 +280,12 @@ function moveBack(position, map) {
 // returns true if enemy attacks, false if no attack
 function checkForEnemy(enemy) {
   // if random number < enemy.attackRate
-  if () {
-    // true (enemy attacks)
-    return ;
-  }
-  // else, false (no attack)
-  return ;
+  // if () {
+  //   // true (enemy attacks)
+  //   return ;
+  // }
+  // // else, false (no attack)
+  // return ;
 }
 
 // attempt item object to map locations of all items
@@ -299,74 +296,80 @@ const itemObj = {
     1: {
       item: stick,
       name: "stick",
-      buttonText: "Pick up Stick",
-      action: // some function that puts stick in inventory
+      buttonText: "Pick up Stick"
+      // action: // some function that puts stick in inventory
     }
   },
   // each position in this map had fruit available
   caveOneCorridorFront: {
-    1: {
-      item: fruit,
-      name: "fruit",
-      buttonText: "Eat Fruit",
-      action: // some function to heal/eat fruit
-    },
+    // 1: {
+    //   item: fruit,
+    //   name: "fruit",
+    //   buttonText: "Eat Fruit",
+    //   action: // some function to heal/eat fruit
+    // },
     2: {
       item: fruit,
       name: "fruit",
-      buttonText: "Eat Fruit",
-      action: // some function to heal/eat fruit
+      buttonText: "Eat Fruit"
+      // action: // some function to heal/eat fruit
     },
-    3: {
-      item: fruit,
-      name: "fruit",
-      buttonText: "Eat Fruit",
-      action: // some function to heal/eat fruit
-    },
+    // 3: {
+    //   item: fruit,
+    //   name: "fruit",
+    //   buttonText: "Eat Fruit",
+    //   action: // some function to heal/eat fruit
+    // },
     4: {
       item: fruit,
       name: "fruit",
-      buttonText: "Eat Fruit",
-      action: // some function to heal/eat fruit
+      buttonText: "Eat Fruit"
+      // action: // some function to heal/eat fruit
     },
     // this is a hidden item to be exposed after eating the fruit at this position
     hidden4: {
       item: helmet,
       name: "helmet",
-      buttonText: "Take Helmet",
-      action: // some function to equip helmet
+      buttonText: "Take Helmet"
+      // action: // some function to equip helmet
     },
     5: {
       item: fruit,
       name: "fruit",
-      buttonText: "Eat Fruit",
-      action: // some function to heal/eat fruit
+      buttonText: "Eat Fruit"
+      // action: // some function to heal/eat fruit
     }
   }
-}
+};
 
 // pseudo-code for updating button row in html
 // after moving player and checking for enemy attack
-function updateButtonRow(position, map) {
-  // check item object/map for item at current position
-  // checkForItem(pos, map)
+// function updateButtonRow(position, map) {
+//   // check item object/map for item at current position
+//   // checkForItem(pos, map)
 
-  // if item, update button 3 with item info & action
-  // return item(?)
+//   // if item, update button 3 with item info & action
+//   // return item(?)
 
-  // else hide button(?)
-  return ;
-}
+//   // else hide button(?)
+//   return;
+// }
 
 // pseudo-code for checking for item at current position
 // for use in update button row
 function checkForItem(position, map) {
   // if item map/object has current position
-  // if (itemPositions[map][position])
-  // set position's item
-  // let item = itemPositions.map.position.item
-  // return item
-  return ;
+  if (itemObj.map.position) {
+    // set position's item
+    let positionItem = itemObj.map.position.item;
+    // return item
+    return positionItem;
+  } else {
+    // if no item at current position
+    // hide btn-3
+    document.querySelector(".btn-3").classList.add(".hidden-btn");
+  }
+  return;
 }
 
 // movement buttons:
@@ -383,14 +386,13 @@ document.querySelector(".forward-btn").addEventListener("click", function() {
   // if player moves forward (can move forward),
   if (moveForward(player.position, mapObject.current)) {
     // check for enemy attack
-      // if true, startFight(), else pass/continue
+    // if true, startFight(), else pass/continue
     // update button row
     // timeout event listener and style button as 'pressed'
     return; // ?
   }
   // if player cannot move forward
   // TODO: update text area with dead end message (in check boundary function?)
-
 });
 
 // event listener for back button
@@ -404,7 +406,6 @@ document.querySelector(".back-btn").addEventListener("click", function() {
   }
   // if player cannot move back
   // TODO: update text area with dead end message (in check boundary function?)
-
 });
 
 // pseudo-code for button row possibilities

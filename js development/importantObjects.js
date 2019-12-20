@@ -115,6 +115,7 @@ const mapMap = {
 };
 
 // TODO: ITEM CLASS
+// TODO: refactor item extension methods
 // ITEM
 class Item {
   constructor(id, name) {
@@ -124,23 +125,37 @@ class Item {
 }
 
 // POTION
+// ?? refactored correctly ??
 class Potion extends Item {
-  constructor(id, name, heal) {
+  constructor(id, name, heal, removeItem) {
     super(id, name);
     this.type = "Potion";
     this.heal = heal;
-    this.message = `Used ${name}: healed ${heal} HP.`;
+    this.useMessage = `Used ${name}: healed ${heal} HP.`;
+    this.message = `Took ${name}`;
     this.buttonText = `Take ${name}`;
-    this.action = function takePotion() {
-      // add potion to correct potion count
-      player.items.potions[id + "Count"] += 1;
-      // TODO: timeout takePotion function for X seconds OR remove from item map for X seconds then replace?
-    };
+  }
+  // refactored class methods
+  static action() {
+    // add potion to correct potion count
+    player.items.potions[this.id + "Count"] += 1;
+  }
+  static removeItem(removeItem) {
+    removeItem;
   }
 }
 
-const potion = new Potion("potion", "Potion", 5);
-const largePotion = new Potion("largePotion", "Large Potion", 15);
+const potion = new Potion("potion", "Potion", 5, function removeItem() {
+  // TODO: timeout takePotion function for X seconds OR remove from item map for X seconds then replace?
+});
+const largePotion = new Potion(
+  "largePotion",
+  "Large Potion",
+  15,
+  function removeItem() {
+    // TODO: timeout takePotion function for X seconds OR remove from item map for X seconds then replace?
+  }
+);
 
 // ARMOR
 class Armor extends Item {
@@ -176,6 +191,7 @@ class Weapon extends Item {
     this.message = `Equipped ${name}`;
     this.buttonText = `Equip ${name}`;
     this.action = function equipWeapon() {
+      console.log("Equipping weapon >>>>>>>>>>>>>");
       // equip weapon
       player.items.weapons.push(this);
     };
@@ -215,6 +231,7 @@ const fruit = new ActionItem(
   "Ate Fruit: gained 1 HP.",
   "Eat Fruit",
   function eatFruit() {
+    console.log("Eating Fruit");
     player.HP += 1;
   },
   function removeItem() {
@@ -248,3 +265,7 @@ const itemMap = {
     caveOneFrontCorridor: { 4: helmet }
   }
 };
+
+// set current map after loading maps
+player.currentMap = threeEntrances;
+// TODO: continue testing importantFunctionality.js

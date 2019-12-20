@@ -1,0 +1,43 @@
+*components
+ - index.js
+ - Main.js - Current Map, Img, Game Text
+ - ButtonRow.js - Three Bottom Buttons
+ - MovementButtons.js - Forward and Back Buttons
+ - PlayerInfo.js - Player Name, Health, Progress, Position, Equipment
+*lib
+ -index.js
+ -maps/GameMap.js
+ -maps/HiddenMap.js
+ -maps/index.js
+ -players/Player.js
+ -players/index.js
+ -items/Item.js
+ -items/Potion.js
+ -items/Weapons.js
+ -items/Armor.js
+ -items/ActionItem.js (?)
+ -items/index.js
+*store
+ - index.js
+ - <data and html>.js
+index.html
+index.js
+
+questions:
+ - where to add event listeners? ask Evan or Manav
+    - main index.js?
+ - state - keeping track of player info, position, etc.
+    - buttons depend on position/map and fighting/moving
+ -
+
+
+ *initial state
+  - map: entrance
+  - position: 1
+  - player.hp
+  - player.maxHp
+  - player.items
+  - gameText: "Intro Text"
+  - gameImage: false
+  - buttonRow: caveEntrances (?)
+  - mainAction: moving//fighting
