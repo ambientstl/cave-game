@@ -1,6 +1,4 @@
 import { Player } from "./lib/players";
-import { GameMap, HiddenMap } from "./lib/maps";
-import { Potion, Weapon, Armor } from "./lib/items";
 import {
   PlayerInfo,
   MainScreen,

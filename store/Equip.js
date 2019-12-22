@@ -1,5 +1,5 @@
 export default {
   armor: [],
-  potions: [0, 0],
-  weapons: []
+  potion: [0, 0],
+  weapon: []
 };
