@@ -23,5 +23,8 @@
   "workbench.colorTheme": "Night Owl (No Italics)",
   "workbench.enableExperiments": false,
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.view.alwaysShowHeaderActions": true
+  "workbench.view.alwaysShowHeaderActions": true,
+  "cSpell.words": [
+    "respawn"
+  ]
 }

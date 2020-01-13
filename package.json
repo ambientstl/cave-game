@@ -4,7 +4,7 @@
   "description": "[Visit My Blog to Listen to Local Experimental Music from St. Louis](https://ambientstl.com/)",
   "main": "classes.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "parcel index.html"
   },
   "repository": {
     "type": "git",
@@ -21,10 +21,15 @@
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "parcel-bundler": "^1.12.4",
     "prettier": "1.19.1",
     "stylelint": "^11.1.1",
     "stylelint-config-prettier": "^6.0.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-prettier": "^1.1.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.1",
+    "navigo": "^7.1.2"
   }
 }

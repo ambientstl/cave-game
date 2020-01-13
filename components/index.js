@@ -1,5 +1,5 @@
 export { default as ButtonRow } from "./ButtonRow";
-export { default as Logo } from "./Logo";
-export { default as MainScreen } from "./MainScreen";
-export { default as MovementButtons } from "./MovementButtons";
+export { default as CenterSection } from "./CenterSection";
+export { default as Frame } from "./Frame";
 export { default as PlayerInfo } from "./PlayerInfo";
+export { default as RightSection } from "./RightSection";

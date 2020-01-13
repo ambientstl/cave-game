@@ -7,39 +7,156 @@ div {
 }
 
 img {
-  width: 100%;
+  width: auto;
   height: 100%;
 }
 
 .move-controls button {
-  display: block;
-  width: 50%;
-  height: 50%;
+  width: 96%;
+  height: 48%;
   margin: auto;
 }
 
-.map-btn button,
+/* .map-btn button,
 .equip-btn button{
-  /* visibility: hidden; */
   width: 100%;
-}
+} */
 
-.text-area {
+/* .text-area {
   position: absolute;
   bottom: 0;
   width: 100%;
+} */
+
+.button-row > button {
+  width: 32vw;
+  height: 15vh;
+  font-size: 2em;
 }
 
-.btn-row button {
-  width: 33%;
-}
-
-.item-menu .btn {
+/* .item-menu .btn {
   display: block;
   width: 75%;
   margin: auto;
-}
+} */
 
 .hidden-btn {
   visibility: hidden;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.right-section {
+  width: 25vw;
+}
+
+.center-section {
+  width: 50vw;
+}
+
+.map-name {
+  height: 20%;
+  font-size: 2.5em;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.main-screen {
+  height: 50%;
+}
+
+.player-info {
+  width: 25vw;
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.top-section {
+  height: 70vh;
+}
+
+.logo {
+  height: 20%;
+  justify-content: center;
+}
+
+.move-controls {
+  height: 100%;
+}
+
+.button-row {
+  justify-content: space-around;
+  /* flex-direction: row; */
+}
+
+.player-name {
+  height: 20%;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.player-health,
+.equipment-button,
+.player-position {
+  height: 10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-text {
+  height: 30%;
+}
+
+.main-text > p {
+  /* height: 50%; */
+  font-size: 1.2em;
+}
+
+footer {
+  height: 15vh;
+}
+
+body {
+  font-size: 10px;
+}
+
+.potion,
+.large-potion {
+  width: 96%;
+  height: 20%;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.equipment-list {
+  padding: 5%;
+}
+
+.equipment-list li {
+  font-size: 1.2rem;
+}
+
+button > img {
+  height: 100%;
+  width: 100%;
+}
+
+.move-controls > button {
+  padding: 0 0;
+}
+
+.main-screen > img {
+  width: 100%;
+  height: auto;
+}
+
+.hidden {
+
 }
