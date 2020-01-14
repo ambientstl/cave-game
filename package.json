@@ -4,6 +4,7 @@
   "description": "[Visit My Blog to Listen to Local Experimental Music from St. Louis](https://ambientstl.com/)",
   "main": "classes.js",
   "scripts": {
+    "parcel-build": "parcel build index.html && cp _redirects ./dist/",
     "serve": "parcel index.html"
   },
   "repository": {
@@ -29,6 +30,9 @@
     "stylelint-prettier": "^1.1.1"
   },
   "dependencies": {
+    "@firebase/app": "^0.5.1",
+    "@firebase/auth": "^0.13.3",
+    "@firebase/firestore": "^1.9.2",
     "axios": "^0.19.1",
     "navigo": "^7.1.2"
   }
