@@ -8,8 +8,10 @@ import { equip } from "./lib/equip";
 import { exitMenu } from "./lib/exitMenu";
 import { usePotion } from "./lib/usePotion";
 import { updateImage } from "./lib/updateImage";
-import { checkForEnemy } from "./lib/checkForEnemy";
 import { updateGameText } from "./lib/updateGameText";
+import { checkForEnemy } from "./lib/checkForEnemy";
+import { beginAttack } from "./lib/beginAttack";
+import { doDamage } from "./lib/doDamage";
 import {
   PlayerInfo,
   CenterSection,
@@ -46,14 +48,18 @@ function addMoveButtonsEventListeners(st) {
     document.querySelector(".forward-btn").addEventListener("click", () => {
       move(st);
       updateImage(st);
-      checkForEnemy(st);
+      if (checkForEnemy(st)) {
+        beginAttack(st);
+      }
       updateButtonRow(st);
       render(st);
     });
     document.querySelector(".back-btn").addEventListener("click", () => {
       move(st, true);
       updateImage(st);
-      checkForEnemy(st);
+      if (checkForEnemy(st)) {
+        beginAttack(st);
+      }
       updateButtonRow(st);
       render(st);
     });
@@ -132,6 +138,14 @@ function addButtonRowEventListeners(st) {
     });
     document.querySelector(".btn-3").addEventListener("click", () => {
       console.log("Attack Button 3");
+      if (!doDamage(st)) {
+        doDamage(st, true);
+        console.log("fight continues, render");
+        render(st);
+        return true;
+      }
+      console.log("fight over, render", st);
+      render(st);
     });
   }
   if (st.Buttons.type === "no-item") {

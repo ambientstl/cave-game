@@ -13,6 +13,8 @@ export default {
     potion: [1, 0],
     weapon: []
   },
-  damage: 0,
-  defense: 0
+  damage: 1,
+  defense: 0,
+  inFight: false,
+  currentEnemy: {}
 };
