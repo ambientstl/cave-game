@@ -12,6 +12,9 @@ import { updateGameText } from "./lib/updateGameText";
 import { checkForEnemy } from "./lib/checkForEnemy";
 import { beginAttack } from "./lib/beginAttack";
 import { doDamage } from "./lib/doDamage";
+import checkForHiddenMap from "./lib/checkForHiddenMap/checkForHiddenMap";
+import revealHiddenDoor from "./lib/revealHiddenDoor/revealHiddenDoor";
+import enterHiddenMap from "./lib/enterHiddenMap/enterHiddenMap";
 import {
   PlayerInfo,
   CenterSection,
@@ -20,6 +23,7 @@ import {
   ButtonRow
 } from "./components";
 import * as state from "./store";
+import { run } from "./lib/run";
 
 state.Player.position.currentMap = masterMap.entrance;
 state.Player.equipment.weapon.push(masterItemMap.entrance[0]);
@@ -50,6 +54,9 @@ function addMoveButtonsEventListeners(st) {
       updateImage(st);
       if (checkForEnemy(st)) {
         beginAttack(st);
+      }
+      if (checkForHiddenMap(st)) {
+        revealHiddenDoor(st);
       }
       updateButtonRow(st);
       render(st);
@@ -127,7 +134,8 @@ function addButtonRowEventListeners(st) {
   }
   if (st.Buttons.type === "attack") {
     document.querySelector(".btn-1").addEventListener("click", () => {
-      console.log("Attack Button 1");
+      run(st);
+      render(st);
     });
     document.querySelector(".btn-2").addEventListener("click", () => {
       st.MainScreen.view = "ItemMenu";
@@ -192,6 +200,26 @@ function addButtonRowEventListeners(st) {
       render(st);
     });
     document.querySelector(".btn-3").classList.add("hidden-btn");
+    return true;
+  }
+  if (st.Buttons.type === "hiddenDoor") {
+    document.querySelector(".btn-1").addEventListener("click", () => {
+      examineMap(st);
+      updateButtonRow(st);
+      render(st);
+    });
+    document.querySelector(".btn-2").addEventListener("click", () => {
+      st.MainScreen.view = "ItemMenu";
+      st.MainScreen.image = "Hidden";
+      st.Buttons.type = "ItemMenu";
+      updateButtonRow(st);
+      render(st);
+    });
+    document.querySelector(".btn-3").addEventListener("click", () => {
+      enterHiddenMap(st);
+      updateButtonRow(st);
+      render(st);
+    });
     return true;
   }
 }

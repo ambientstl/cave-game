@@ -1,8 +1,8 @@
 export default {
   name: "Player One",
   health: {
-    hp: 10,
-    maxHp: 15
+    hp: 20,
+    maxHp: 20
   },
   position: {
     currentMap: {},
@@ -14,7 +14,7 @@ export default {
     weapon: []
   },
   damage: 1,
-  defense: 0,
+  defense: 1,
   inFight: false,
   currentEnemy: {}
 };
