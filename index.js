@@ -52,11 +52,11 @@ function addMoveButtonsEventListeners(st) {
     document.querySelector(".forward-btn").addEventListener("click", () => {
       move(st);
       updateImage(st);
-      if (checkForEnemy(st)) {
-        beginAttack(st);
-      }
       if (checkForHiddenMap(st)) {
         revealHiddenDoor(st);
+      }
+      if (checkForEnemy(st)) {
+        beginAttack(st);
       }
       updateButtonRow(st);
       render(st);

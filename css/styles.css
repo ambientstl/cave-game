@@ -157,6 +157,23 @@ button > img {
   height: auto;
 }
 
-.hidden {
+@media (min-width: 300px) {
+  .equipment-button {
+    width: 100%;
+  }
+}
 
+@media (min-width: 525px) {
+  .main-screen > img {
+    width: 266.362px;
+    height: 266.362px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .move-controls img {
+    width: 208px;
+    height: 201px;
+  }
 }
