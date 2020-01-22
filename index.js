@@ -159,6 +159,8 @@ function addButtonRowEventListeners(st) {
     document.querySelector(".btn-2").addEventListener("click", () => {
       console.log("Restarting");
       resetState(st);
+      st.Player.position.currentMap = masterMap.entrance;
+      st.Player.equipment.weapon.push(masterItemMap.entrance[0]);
       render(st);
     });
     document.querySelector(".btn-3").classList.add("hidden-btn");
