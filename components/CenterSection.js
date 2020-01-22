@@ -14,6 +14,6 @@ export default st => `<div class="center-section">
   <p>${curr}</p>
   `),
     ``
-  )};
+  )}
 </div>
 </div>`;
