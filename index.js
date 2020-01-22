@@ -12,9 +12,11 @@ import { updateGameText } from "./lib/updateGameText";
 import { checkForEnemy } from "./lib/checkForEnemy";
 import { beginAttack } from "./lib/beginAttack";
 import { doDamage } from "./lib/doDamage";
-import checkForHiddenMap from "./lib/checkForHiddenMap/checkForHiddenMap";
-import revealHiddenDoor from "./lib/revealHiddenDoor/revealHiddenDoor";
-import enterHiddenMap from "./lib/enterHiddenMap/enterHiddenMap";
+import { checkForHiddenMap } from "./lib/checkForHiddenMap";
+import { revealHiddenDoor } from "./lib/revealHiddenDoor";
+import { enterHiddenMap } from "./lib/enterHiddenMap";
+import { runFromBattle } from "./lib/run";
+import { resetState } from "./lib/resetState";
 import {
   PlayerInfo,
   CenterSection,
@@ -23,7 +25,6 @@ import {
   ButtonRow
 } from "./components";
 import * as state from "./store";
-import { run } from "./lib/run";
 
 state.Player.position.currentMap = masterMap.entrance;
 state.Player.equipment.weapon.push(masterItemMap.entrance[0]);
@@ -134,7 +135,7 @@ function addButtonRowEventListeners(st) {
   }
   if (st.Buttons.type === "attack") {
     document.querySelector(".btn-1").addEventListener("click", () => {
-      run(st);
+      runFromBattle(st);
       render(st);
     });
     document.querySelector(".btn-2").addEventListener("click", () => {
@@ -145,16 +146,23 @@ function addButtonRowEventListeners(st) {
       render(st);
     });
     document.querySelector(".btn-3").addEventListener("click", () => {
-      console.log("Attack Button 3");
       if (!doDamage(st)) {
         doDamage(st, true);
-        console.log("fight continues, render");
         render(st);
         return true;
       }
-      console.log("fight over, render", st);
       render(st);
     });
+  }
+  if (st.Buttons.type === "dead") {
+    document.querySelector(".btn-1").classList.add("hidden-btn");
+    document.querySelector(".btn-2").addEventListener("click", () => {
+      console.log("Restarting");
+      resetState(st);
+      render(st);
+    });
+    document.querySelector(".btn-3").classList.add("hidden-btn");
+    return true;
   }
   if (st.Buttons.type === "no-item") {
     document.querySelector(".btn-1").addEventListener("click", () => {
