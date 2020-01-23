@@ -50,7 +50,7 @@ function render(st) {
 }
 
 function addMoveButtonsEventListeners(st) {
-  if (!(state.Buttons.type === "attack")) {
+  if (!(state.Buttons.type === "attack" || state.Buttons.type === "dead")) {
     document.querySelector(".forward-btn").addEventListener("click", () => {
       move(st);
       updateImage(st);
