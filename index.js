@@ -17,6 +17,7 @@ import { revealHiddenDoor } from "./lib/revealHiddenDoor";
 import { enterHiddenMap } from "./lib/enterHiddenMap";
 import { runFromBattle } from "./lib/run";
 import { resetState } from "./lib/resetState";
+import { hideEquipmentButton } from "./lib/hideEquipmentButton";
 import {
   PlayerInfo,
   CenterSection,
@@ -85,6 +86,16 @@ function addMoveButtonsEventListeners(st) {
 }
 
 function addEquipButtonEventListener(st) {
+  if (st.Buttons.type === "Menu") {
+    document
+      .querySelector(".equipment-button")
+      .addEventListener("click", () => {
+        exitMenu(st);
+        updateButtonRow(st);
+        render(st);
+      });
+    return true;
+  }
   document.querySelector(".equipment-button").addEventListener("click", () => {
     st.MainScreen.view = "EquipmentList";
     st.MainScreen.image = "Hidden";
@@ -142,6 +153,7 @@ function addButtonRowEventListeners(st) {
       st.MainScreen.view = "ItemMenu";
       st.MainScreen.image = "Hidden";
       st.Buttons.type = "ItemMenu";
+      hideEquipmentButton(st);
       updateButtonRow(st);
       render(st);
     });
@@ -176,6 +188,7 @@ function addButtonRowEventListeners(st) {
       st.MainScreen.view = "ItemMenu";
       st.MainScreen.image = "Hidden";
       st.Buttons.type = "ItemMenu";
+      hideEquipmentButton(st);
       updateButtonRow(st);
       render(st);
     });
@@ -192,6 +205,7 @@ function addButtonRowEventListeners(st) {
       st.MainScreen.view = "ItemMenu";
       st.MainScreen.image = "Hidden";
       st.Buttons.type = "Menu";
+      hideEquipmentButton(st);
       updateButtonRow(st);
       render(st);
     });
