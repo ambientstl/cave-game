@@ -2,6 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+       <!--  Add link rel manifest -->
+   <link rel="manifest" href="manifest.webmanifest">
+   <!-- Add iOS meta tags and icons -->
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black">
+   <meta name="apple-mobile-web-app-title" content="Cave Game">
+   <link rel="apple-touch-icon" href="./images/icons/icons-152.png">
+   <!--  Add description here -->
+   <meta name="description" content="RPG Cave Crawler">
+   <!-- Add meta theme-color -->
+   <meta name="theme-color" content="#000" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>CAVE GAME</title>
@@ -12,9 +23,31 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./css/styles.css" />
+
   </head>
   <body>
+    <style>
+      #butInstall {
+        background: url(./images/install.svg) center center no-repeat;
+      }
+    </style>
+    <button id="butInstall" aria-label="Install" hidden></button>
+    <button id="butRefresh" aria-label="Refresh"></button>
     <div id="root">
+      <!--Add the install script here -->
+    <script src="./install.js"></script>
     <script src="./index.js"></script>
+
+    <script type="text/javascript">
+    //Register service worker.
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/service-worker.js").then(reg => {
+      console.log("Service worker registered.", reg);
+    });
+  });
+}
+    </script>
+
   </body>
 </html>

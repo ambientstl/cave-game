@@ -5,7 +5,7 @@
   "main": "classes.js",
   "scripts": {
     "parcel-build": "parcel build index.html && cp _redirects ./dist/",
-    "serve": "parcel index.html"
+    "serve": "parcel index.html --cert cert.crt --key cert_2.key"
   },
   "repository": {
     "type": "git",
