@@ -5,3 +5,4 @@ node_modules
 *.sw*
 experimental-text-game
 .env
+.ipynb_checkpoints
