@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "[Visit My Blog to Listen to Local Experimental Music from St. Louis](https://ambientstl.com/)",
   "main": "classes.js",
+  "files" :[
+    "dist",
+    "manifest",
+    "index.html",
+    "./src/service-worker.js"
+  ],
   "scripts": {
     "start": "parcel ./src/index.html",
     "predeploy": "rm -rf dist && parcel build ./src/index.html && cp _redirects ./dist/ && cp -r ./src/**/ ./dist/ && cp -r ./src/*.js ./dist/",
@@ -10,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ambientstl/sc-practice.git"
+    "url": "git+https://github.com/JENkt4k/cave-game.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ambientstl/sc-practice/issues"
+    "url": "https://github.com/JENkt4k/cave-game/issues"
   },
-  "homepage": "https://github.com/ambientstl/sc-practice#readme",
+  "homepage": "https://github.com/JENkt4k/cave-game#readme",
   "devDependencies": {
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
