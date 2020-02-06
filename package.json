@@ -4,8 +4,11 @@
   "description": "[Visit My Blog to Listen to Local Experimental Music from St. Louis](https://ambientstl.com/)",
   "main": "classes.js",
   "scripts": {
-    "parcel-build": "parcel build index.html && cp _redirects ./dist/",
-    "serve": "parcel index.html --cert cert.crt --key cert_2.key"
+    "parcel-build": "parcel build index.html  --public-url ./ && cp _redirects ./dist/",
+    "serve": "parcel index.html --https",
+    "start": "parcel index.html",
+    "predeploy": "rm -rf dist && parcel build index.html",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,7 @@
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "gh-pages": "^1.2.0",
     "parcel-bundler": "^1.12.4",
     "prettier": "1.19.1",
     "stylelint": "^11.1.1",
