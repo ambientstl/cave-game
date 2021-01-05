@@ -33,7 +33,7 @@
     "@firebase/app": "^0.5.1",
     "@firebase/auth": "^0.13.3",
     "@firebase/firestore": "^1.9.2",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "navigo": "^7.1.2"
   }
